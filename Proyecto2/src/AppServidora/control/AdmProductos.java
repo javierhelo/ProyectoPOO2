@@ -1,14 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AppServidora.control;
 
-/**
- *
- * @author Juley
- */
+import general.Producto;
+import java.util.ArrayList;
+
 public class AdmProductos {
     
+    private ArrayList<Producto> listaProductos = new ArrayList();
+
+    public AdmProductos() {
+        
+    }
+
+    public ArrayList<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(ArrayList<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+    
+    public void crearMenu(){
+        
+        
+    }
+
+    @Override
+    public String toString() {
+        return "Lista de Productos: " + listaProductos + '\n';
+    }
 }

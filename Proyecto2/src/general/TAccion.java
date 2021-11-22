@@ -10,5 +10,5 @@ package general;
  * @authors Juleisy Porras y Javier Helo
  */
 public enum TAccion {
-    
+    INGRESAR, VER_PRODUCTOS
 }
