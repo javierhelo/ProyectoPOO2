@@ -14,4 +14,6 @@ public interface IConstantes {
     int PUERTO  = 5000;
     String USERADM = "admin";
     String PWADM = "!2345";
+    int ERROR_ARCHIVO = -1000;
+    int EXITO = 0;
 }
