@@ -19,7 +19,7 @@ public class Controlador {
                  peticionRecibida.setDatosSalida(admOK);
                 break;
             case VER_PRODUCTOS:
-                admPro.crearMenu();
+//                admPro.crearMenu();
                 peticionRecibida.setDatosSalida(admPro.toString()+ "\n\n");
                 break;
         }

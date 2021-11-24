@@ -6,6 +6,7 @@
 package general;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Pedido implements Serializable{
     private int codigo;
     private String persona;
     private TPedido tipo;
+    private ArrayList<Producto> productos = new ArrayList<>();
 
     public Pedido() {
     }
@@ -26,43 +28,53 @@ public class Pedido implements Serializable{
         this.persona = persona;
         this.tipo = tipo;
     }
-
-    public String getFecha() {
-        return fecha;
+    
+    public void agregarProducto(Producto nuevo){
+        productos.add(nuevo);
     }
+    
+    public void borrarProductoPedido(String codigo){
+        for (int i = 0; i < productos.size(); i++){
+            Producto actual = productos.get(i);
+            if (codigo.equalsIgnoreCase(actual.getCodigo())){
+                productos.remove(i);
+                return;
+            }
+        }
+        return;
+    }
+    
+    public void borrarProductoPedido(String codigo, int cantidad){
+        for (int i = 0; i < cantidad; i++){
+            borrarProductoPedido(codigo);
+        } 
+    }
+    
+    
+    
+//    public double calcularPrecio(){
+//        
+//    }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
-    }
-
-    public int getCodigo() {
-        return codigo;
     }
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
-    public String getPersona() {
-        return persona;
-    }
-
     public void setPersona(String persona) {
         this.persona = persona;
-    }
-
-    public TPedido getTipo() {
-        return tipo;
     }
 
     public void setTipo(TPedido tipo) {
         this.tipo = tipo;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido: " + "Fecha: " + fecha + "- Codigo: " + codigo 
-                + "- Persona que realizo el pedido: " + persona 
-                + "- Tipo de pedido: " + tipo;
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
     }
+
+    
 }

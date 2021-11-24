@@ -19,8 +19,7 @@ public class AdmProductos {
         this.listaProductos = listaProductos;
     }
     
-    public void crearMenu(){
-        
+    public void escribirMenu(){
         
     }
 

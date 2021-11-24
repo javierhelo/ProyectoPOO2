@@ -78,11 +78,11 @@ public class FrmTipoPedido extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRecoger)
-                    .addComponent(jButtonExpress))
+                    .addComponent(jButtonExpress)
+                    .addComponent(jButtonRecoger))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRestaurante)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         pack();
