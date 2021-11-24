@@ -24,8 +24,8 @@ public class Producto implements Serializable {
 
     public Producto() {
     }
-    
-    public Producto(String codigo, String nombre, String descripcion, int tamPorcion, int piezas, double calPorcion, double calPieza, double precio) {
+
+    public Producto(String codigo, String nombre, String descripcion, int tamPorcion, int piezas, double calPorcion, double calPieza, double precio, TPlatillo tipo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -34,7 +34,10 @@ public class Producto implements Serializable {
         this.calPorcion = calPorcion;
         this.calPieza = calPieza;
         this.precio = precio;
+        this.tipo = tipo;
     }
+    
+    
 
     public String getCodigo() {
         return codigo;
