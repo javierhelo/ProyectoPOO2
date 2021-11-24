@@ -3,11 +3,37 @@ package AppServidora.control;
 import general.Peticion;
 
 public class Controlador {
-    private AdmUsuarios admUsr = new AdmUsuarios();
-    private AdmProductos admPro = new AdmProductos();
-    private AdmPedidos admPed = new AdmPedidos();
+    private AdmUsuarios admUsr;
+    private AdmProductos admPro;
+    private AdmPedidos admPed;
 
     public Controlador() {
+        admPro = new AdmProductos();
+        admUsr = new AdmUsuarios();
+    }
+
+    public AdmUsuarios getAdmUsr() {
+        return admUsr;
+    }
+
+    public void setAdmUsr(AdmUsuarios admUsr) {
+        this.admUsr = admUsr;
+    }
+
+    public AdmProductos getAdmPro() {
+        return admPro;
+    }
+
+    public void setAdmPro(AdmProductos admPro) {
+        this.admPro = admPro;
+    }
+
+    public AdmPedidos getAdmPed() {
+        return admPed;
+    }
+
+    public void setAdmPed(AdmPedidos admPed) {
+        this.admPed = admPed;
     }
     
     public Peticion procesarPeticion(Peticion peticionRecibida) {

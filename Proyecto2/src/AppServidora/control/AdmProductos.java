@@ -70,6 +70,7 @@ public class AdmProductos {
      * @param tamPorcion
      * @param piezas
      * @param calPorcion
+     * @param calPieza
      * @param precio
      * @param tipo 
      */
@@ -80,6 +81,53 @@ public class AdmProductos {
         int escribirMenu = escribirMenu("src\\menu.dat", porAgregar);
         listaProductos.add(new Producto(codigo, nombre, descripcion, tamPorcion, piezas, calPorcion, calPieza, precio, tipo));
     }
+    
+    public ArrayList<String[]> datosVerProducto(){
+        ArrayList<String[]> datosProducto = new ArrayList();
+        for (Producto actual : listaProductos ){
+            String[] datos = new String[9];
+            datos[0] = String.valueOf(actual.getCodigo());
+            datos[1] = String.valueOf(actual.getNombre());
+            datos[2] = String.valueOf(actual.getDescripcion());
+            datos[3] = String.valueOf(actual.getTamPorcion());
+            datos[4] = String.valueOf(actual.getPiezas());
+            datos[5] = String.valueOf(actual.getCalPorcion());
+            datos[6] = String.valueOf(actual.getCalPieza());
+            datos[7] = String.valueOf(actual.getPrecio());
+            datos[8] = getPlatilloString(actual.getTipo());;
+            datosProducto.add(datos);
+        }
+        return datosProducto;
+    }
+    
+    public ArrayList<String[]> datosMenu(){
+        ArrayList<String[]> datosProducto = new ArrayList();
+        for (Producto actual : listaProductos ){
+            String[] datos = new String[4];
+            datos[0] = String.valueOf(actual.getCodigo());
+            datos[1] = String.valueOf(actual.getNombre());
+            datos[2] = String.valueOf(actual.getCalPorcion());
+            datos[3] = "Ver producto";
+            datosProducto.add(datos);
+        }
+        return datosProducto;
+        
+    }
+    
+    
+    public String getPlatilloString(TPlatillo platillo){
+        if (platillo == TPlatillo.BEB){
+            return "Bebida";
+        }
+        if (platillo == TPlatillo.ENT){
+            return "Entrada";
+        }
+        if (platillo == TPlatillo.PRN){
+            return "Plato fuerte";
+        }
+        return "Postre";
+    }
+    
     
     /**
      * Función que escribe los elementos de una lista de productos en un archivo binario.
