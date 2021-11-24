@@ -36,8 +36,8 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        ClienteBtt = new javax.swing.JButton();
+        AdmBtt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,29 +52,29 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Para empezar, seleccione como desea ingresar:");
 
-        jButton2.setBackground(new java.awt.Color(102, 153, 255));
-        jButton2.setText("Cliente");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        ClienteBtt.setBackground(new java.awt.Color(102, 153, 255));
+        ClienteBtt.setText("Cliente");
+        ClienteBtt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                ClienteBttMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ClienteBtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ClienteBttActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(102, 153, 255));
-        jButton1.setText("Administrador");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        AdmBtt.setBackground(new java.awt.Color(102, 153, 255));
+        AdmBtt.setText("Administrador");
+        AdmBtt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                AdmBttMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AdmBtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AdmBttActionPerformed(evt);
             }
         });
 
@@ -86,10 +86,10 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ClienteBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(AdmBtt)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
@@ -112,9 +112,9 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(33, 33, 33)
-                .addComponent(jButton1)
+                .addComponent(AdmBtt)
                 .addGap(26, 26, 26)
-                .addComponent(jButton2)
+                .addComponent(ClienteBtt)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
@@ -140,25 +140,25 @@ public class FrmInicio extends javax.swing.JFrame {
 
     
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AdmBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmBttActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AdmBttActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ClienteBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteBttActionPerformed
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ClienteBttActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void ClienteBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClienteBttMouseClicked
         FrmRealizarPedido realizarPedido = new FrmRealizarPedido();
         realizarPedido.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_ClienteBttMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void AdmBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdmBttMouseClicked
         FrmIngresoAdm ingreso = new FrmIngresoAdm();
         ingreso.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_AdmBttMouseClicked
 
     /**
      * @param args the command line arguments
@@ -196,8 +196,8 @@ public class FrmInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton AdmBtt;
+    private javax.swing.JButton ClienteBtt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -117,7 +117,7 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,6 +132,11 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablaMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
@@ -338,6 +343,16 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
     private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarProductoActionPerformed
+
+    private void tablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMousePressed
+        int row = tabla.rowAtPoint(evt.getPoint());
+        int col = tabla.columnAtPoint(evt.getPoint());
+        if (col == 3){
+            FrmVerProducto verProducto = new FrmVerProducto();
+            verProducto.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_tablaMousePressed
 
     /**
      * @param args the command line arguments

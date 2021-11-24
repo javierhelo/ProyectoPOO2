@@ -164,8 +164,13 @@ public class FrmIngresoAdm extends javax.swing.JFrame {
         Cliente conexion = new Cliente(peticionIngresar);
         
         boolean respuesta = (boolean) conexion.getRespuestaServer();
-        mensaje.setText(respuesta ? "Todo OK, va para adentro!" 
-                                     : "!Credenciales del usuario admin incorrectas!");
+        mensaje.setText(respuesta ? "Datos correctos. Ingresando al sistema..." 
+                                     : "¡Credenciales incorrectas!");
+        if (respuesta == true){
+            FrmPantallaPrincipalAdm principalAdm = new FrmPantallaPrincipalAdm();
+            principalAdm.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     /**
