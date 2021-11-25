@@ -40,6 +40,17 @@ public class AdmPedidos {
 //        listaPedidos.add(nuevo2);
 //    }
     
+    public double calcularPrecio(int codigo){
+        double precio = 0;
+        for (Pedido actual : listaPedidos){
+            if (actual.getCodigo() == codigo){
+                precio = actual.precioPedido();
+            }
+        }
+        return precio;
+    }
+    
+    
     
     /**
      * Función booleana que dice si un producto se pudo agregar a un determinado pedido

@@ -5,6 +5,11 @@
  */
 package AppCliente.vista;
 
+import AppServidora.control.Controlador;
+import AppCliente.modelo.Cliente;
+import general.Peticion;
+import general.TAccion;
+
 /**
  *
  * @author Javier
@@ -16,6 +21,7 @@ public class FrmPedidoRegistrado extends javax.swing.JFrame {
      */
     public FrmPedidoRegistrado() {
         initComponents();
+        ponerPrecio();
     }
 
     /**
@@ -27,21 +33,19 @@ public class FrmPedidoRegistrado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jTextFieldPrecio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButtonOK = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("¡Pedido realizado con éxito!");
-        jTextArea1.setCaretColor(new java.awt.Color(0, 80, 45));
-        jTextArea1.setSelectedTextColor(new java.awt.Color(20, 80, 100));
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextFieldPrecio.setEditable(false);
+        jTextFieldPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPrecioActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel1.setLabelFor(jTextFieldPrecio);
@@ -49,37 +53,42 @@ public class FrmPedidoRegistrado extends javax.swing.JFrame {
 
         jButtonOK.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jButtonOK.setText("OK");
+        jButtonOK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonOKMouseClicked(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
+        jLabel2.setText("¡Pedido realizado con exito!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(69, 69, 69)
+                .addComponent(jLabel2)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jButtonOK)
                 .addGap(33, 33, 33))
         );
@@ -87,6 +96,22 @@ public class FrmPedidoRegistrado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioActionPerformed
+        
+    }//GEN-LAST:event_jTextFieldPrecioActionPerformed
+
+    private void jButtonOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOKMouseClicked
+        FrmInicio iniciarNuevo = new FrmInicio();
+        iniciarNuevo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonOKMouseClicked
+
+    public void ponerPrecio(){
+        double precioFinal = precioTotal();
+        String precioFinalString = Double.toString(precioFinal);
+        jTextFieldPrecio.setText(precioFinalString);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -121,12 +146,17 @@ public class FrmPedidoRegistrado extends javax.swing.JFrame {
             }
         });
     }
+    
+    public double precioTotal(){
+        Controlador controlador = FrmInicio.getControlador();
+        int codigo = controlador.getContador();
+        return controlador.precio(codigo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonOK;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextFieldPrecio;
     // End of variables declaration//GEN-END:variables
 }

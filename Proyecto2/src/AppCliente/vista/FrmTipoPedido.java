@@ -59,6 +59,11 @@ public class FrmTipoPedido extends javax.swing.JFrame {
                 comerRestauranteBttMouseClicked(evt);
             }
         });
+        comerRestauranteBtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comerRestauranteBttActionPerformed(evt);
+            }
+        });
 
         recogerBtt.setText("Recoger");
         recogerBtt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,6 +168,12 @@ public class FrmTipoPedido extends javax.swing.JFrame {
         verPedido.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarBttMouseClicked
+
+    private void comerRestauranteBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comerRestauranteBttActionPerformed
+        FrmPedidoRegistrado registrado = new FrmPedidoRegistrado();
+        registrado.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_comerRestauranteBttActionPerformed
 
     /**
      * @param args the command line arguments

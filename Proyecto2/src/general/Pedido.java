@@ -92,6 +92,13 @@ public class Pedido implements Serializable{
         return "Postre";
     }
     
+    public double precioPedido(){
+        double total = 0;
+        for (Producto actual : carrito){
+            total += actual.getPrecio();
+        }
+        return total;
+    }
    
     public String getFecha() {
         return fecha;

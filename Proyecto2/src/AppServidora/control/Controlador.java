@@ -6,6 +6,7 @@ public class Controlador {
     private AdmUsuarios admUsr;
     private AdmProductos admPro;
     private AdmPedidos admPed;
+    private int contador = 0;
 
     public Controlador() {
         admPro = new AdmProductos();
@@ -36,6 +37,23 @@ public class Controlador {
     public void setAdmPed(AdmPedidos admPed) {
         this.admPed = admPed;
     }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+    
+    
+    
+    public double precio(int codigo){
+        return admPed.calcularPrecio(codigo);
+    }
+    
+    
+    
     
     /**
      * Función que busca un producto en el catálogo para luego poder agregarlo al carrito
@@ -61,6 +79,7 @@ public class Controlador {
                 boolean clienteOK = true;
                 admPed.generarPedido(n);
                 n++;
+                contador++;
                 peticionRecibida.setDatosSalida(clienteOK);
                 break;
             case AGREGAR_CARRITO:
@@ -77,6 +96,16 @@ public class Controlador {
                 break;
             case VER_PEDIDOS:
                 peticionRecibida.setDatosSalida(admPed.toString()+ "\n\n");
+                break;
+            case FINALIZAR_EXPRESS:
+                peticionRecibida.setDatosSalida(true);
+                //numeros de celular válidos
+                break;
+            case FINALIZAR_RECOGER:
+                peticionRecibida.setDatosSalida(true);
+                break;
+            case FINALIZAR_PEDIDO:
+                peticionRecibida.setDatosSalida(true);
                 break;
         }
         return peticionRecibida;

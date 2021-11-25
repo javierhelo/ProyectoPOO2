@@ -93,8 +93,18 @@ public class FrmVerPedido extends javax.swing.JFrame {
                 regresarBttMouseClicked(evt);
             }
         });
+        regresarBtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarBttActionPerformed(evt);
+            }
+        });
 
         confirmarPedidoBtt.setText("Confirmar pedido");
+        confirmarPedidoBtt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmarPedidoBttMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,12 +159,21 @@ public class FrmVerPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresarBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarBttMouseClicked
-
         FrmRealizarPedido realizarPedido = new FrmRealizarPedido();
         realizarPedido.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_regresarBttMouseClicked
+
+    private void regresarBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBttActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_regresarBttActionPerformed
+
+    private void confirmarPedidoBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarPedidoBttMouseClicked
+        FrmTipoPedido tipo = new FrmTipoPedido();
+        tipo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_confirmarPedidoBttMouseClicked
 
      private void ajustarTabla(){
         TableColumnModel columnModel = tablaPedido.getColumnModel();

@@ -5,6 +5,10 @@
  */
 package AppCliente.vista;
 
+import AppCliente.modelo.Cliente;
+import general.Peticion;
+import general.TAccion;
+
 /**
  *
  * @author Javier
@@ -52,8 +56,23 @@ public class FrmRecoger extends javax.swing.JFrame {
         jLabelCelular.setText("Celular:");
 
         jButtonRegresar.setText("Regresar a tu pedido");
+        jButtonRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonRegresarMouseClicked(evt);
+            }
+        });
 
         jButtonConfirmar.setText("Confirmar pedido");
+        jButtonConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonConfirmarMouseClicked(evt);
+            }
+        });
+        jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,6 +122,33 @@ public class FrmRecoger extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegresarMouseClicked
+        FrmTipoPedido tipoPedido = new FrmTipoPedido();
+        tipoPedido.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarMouseClicked
+
+    private void jButtonConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConfirmarMouseClicked
+        
+    }//GEN-LAST:event_jButtonConfirmarMouseClicked
+
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        
+        Peticion peticionFinalizar = new Peticion();
+        peticionFinalizar.setAccion(TAccion.FINALIZAR_RECOGER);
+        
+        Cliente conexion = new Cliente(peticionFinalizar);
+        
+        boolean respuesta = (boolean) conexion.getRespuestaServer();
+//        mensaje.setText(respuesta ? "Datos correctos. Ingresando al sistema..." 
+//                                     : "¡Credenciales incorrectas!");
+        if (respuesta == true){
+            FrmPedidoRegistrado pedidoRegistrado = new FrmPedidoRegistrado();
+            pedidoRegistrado.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     /**
      * @param args the command line arguments

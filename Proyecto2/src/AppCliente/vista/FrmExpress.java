@@ -5,6 +5,10 @@
  */
 package AppCliente.vista;
 
+import AppCliente.modelo.Cliente;
+import general.Peticion;
+import general.TAccion;
+
 /**
  *
  * @author Javier
@@ -27,22 +31,16 @@ public class FrmExpress extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabelCelular = new javax.swing.JLabel();
         jLabelDireccion = new javax.swing.JLabel();
         jTextFieldCelular = new javax.swing.JTextField();
         jTextFieldDireccion = new javax.swing.JTextField();
         jButtonRegresar = new javax.swing.JButton();
         jButton2Confirmar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Escriba el número de celular de la persona que hace el pedido, además\nde la dirección exacta donde se debe ir a dejar el pedido:");
-        jScrollPane1.setViewportView(jTextArea1);
 
         jLabelCelular.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         jLabelCelular.setLabelFor(jTextFieldCelular);
@@ -54,9 +52,25 @@ public class FrmExpress extends javax.swing.JFrame {
 
         jButtonRegresar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar a tu pedido");
+        jButtonRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonRegresarMouseClicked(evt);
+            }
+        });
 
         jButton2Confirmar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         jButton2Confirmar.setText("Confirmar pedido");
+        jButton2Confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ConfirmarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel1.setText("Escriba el número de celular de la persona que hace el pedido");
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel2.setText("además de la dirección exacta donde se debe ir a dejar el pedido:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,30 +79,33 @@ public class FrmExpress extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelDireccion)
-                            .addComponent(jLabelCelular))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(jTextFieldDireccion)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(137, 137, 137)
                         .addComponent(jButtonRegresar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton2Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelDireccion)
+                                    .addComponent(jLabelCelular))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldDireccion)))
+                            .addComponent(jLabel2))))
+                .addContainerGap(500, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCelular)
                     .addComponent(jTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -96,7 +113,7 @@ public class FrmExpress extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDireccion)
                     .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRegresar)
                     .addComponent(jButton2Confirmar))
@@ -105,6 +122,30 @@ public class FrmExpress extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegresarMouseClicked
+        FrmTipoPedido tipoPedido = new FrmTipoPedido();
+        tipoPedido.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarMouseClicked
+
+    private void jButton2ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ConfirmarActionPerformed
+        String celular = jTextFieldCelular.getText();
+        String direccion = jTextFieldDireccion.getText();
+        
+        Peticion peticionFinalizar = new Peticion(TAccion.FINALIZAR_EXPRESS, celular);
+        
+        Cliente conexion = new Cliente(peticionFinalizar);
+        
+        boolean respuesta = (boolean) conexion.getRespuestaServer();
+//        mensaje.setText(respuesta ? "Datos correctos. Ingresando al sistema..." 
+//                                     : "¡Credenciales incorrectas!");
+        if (respuesta == true){
+            FrmPedidoRegistrado pedidoRegistrado = new FrmPedidoRegistrado();
+            pedidoRegistrado.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton2ConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,10 +185,10 @@ public class FrmExpress extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2Confirmar;
     private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCelular;
     private javax.swing.JLabel jLabelDireccion;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldCelular;
     private javax.swing.JTextField jTextFieldDireccion;
     // End of variables declaration//GEN-END:variables
