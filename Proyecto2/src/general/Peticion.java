@@ -18,6 +18,7 @@ public class Peticion implements Serializable{
 
     public Peticion() {
     }
+    
 
     public Peticion(TAccion accion, Object datosEntrada) {
         this.accion = accion;

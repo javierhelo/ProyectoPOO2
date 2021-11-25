@@ -14,30 +14,53 @@ import java.util.ArrayList;
  */
 public class Pedido implements Serializable{
     private String fecha;
-    private int codigo;
+    public static int codigo = 0;
     private String persona;
     private TPedido tipo;
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private ArrayList<Producto> carrito = new ArrayList<>();
 
     public Pedido() {
     }
 
-    public Pedido(String fecha, int codigo, String persona, TPedido tipo) {
+    public Pedido(String fecha, String persona, TPedido tipo) {
         this.fecha = fecha;
-        this.codigo = codigo;
+        this.codigo = codigo++;
         this.persona = persona;
         this.tipo = tipo;
     }
     
+    public Pedido(String fecha){
+        this.fecha = fecha;
+        this.codigo = codigo++;
+    }
     public void agregarProducto(Producto nuevo){
-        productos.add(nuevo);
+        carrito.add(nuevo);
+    }
+    
+    /**
+     * 
+     * @param nuevo     Producto que se inserta
+     * @param cantidad  Cantidad de veces que este se insertará en el pedido
+     */
+    public void agregarProducto(Producto nuevo, int cantidad){
+        for (int i = 0; i < cantidad; i++){
+            carrito.add(nuevo);
+        }
+    }
+    
+    /**
+     * Función booleana que dice si un pedido está vacío
+     * @return 
+     */
+    public boolean esPedidoValido(){
+        return carrito.isEmpty();
     }
     
     public void borrarProductoPedido(String codigo){
-        for (int i = 0; i < productos.size(); i++){
-            Producto actual = productos.get(i);
+        for (int i = 0; i < carrito.size(); i++){
+            Producto actual = carrito.get(i);
             if (codigo.equalsIgnoreCase(actual.getCodigo())){
-                productos.remove(i);
+                carrito.remove(i);
                 return;
             }
         }
@@ -52,9 +75,24 @@ public class Pedido implements Serializable{
     
     
     
+    public String getFecha() {
+        return fecha;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getPersona() {
+        return persona;
+    }
+
 //    public double calcularPrecio(){
 //        
 //    }
+    public TPedido getTipo() {
+        return tipo;
+    }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
@@ -72,9 +110,14 @@ public class Pedido implements Serializable{
         this.tipo = tipo;
     }
 
-    public void setProductos(ArrayList<Producto> productos) {
-        this.productos = productos;
+    public void setCarrito(ArrayList<Producto> carrito) {
+        this.carrito = carrito;
     }
 
+    public ArrayList<Producto> getCarrito() {
+        return carrito;
+    }
+    
+    
     
 }

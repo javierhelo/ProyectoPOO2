@@ -10,6 +10,7 @@ public class Controlador {
     public Controlador() {
         admPro = new AdmProductos();
         admUsr = new AdmUsuarios();
+        admPed = new AdmPedidos();
     }
 
     public AdmUsuarios getAdmUsr() {
@@ -36,7 +37,17 @@ public class Controlador {
         this.admPed = admPed;
     }
     
+    /**
+     * Función que busca un producto en el catálogo para luego poder agregarlo al carrito
+     * @param codigo
+     * @return 
+     */
+    public Object obtenerProducto(String codigo){
+        return admPro.obtenerProducto(codigo);
+    }
+    
     public Peticion procesarPeticion(Peticion peticionRecibida) {
+        int n = 0;
         switch (peticionRecibida.getAccion()){
             case INGRESAR: 
                  String credenciales = (String) peticionRecibida.getDatosEntrada();
@@ -44,9 +55,32 @@ public class Controlador {
                  boolean admOK = admUsr.validarAdm(partes[0], partes[1]);
                  peticionRecibida.setDatosSalida(admOK);
                 break;
-            case VER_PRODUCTOS:
+            case VER_PRODUCTO:
 //                admPro.crearMenu();
                 peticionRecibida.setDatosSalida(admPro.toString()+ "\n\n");
+                break;
+            case INGRESAR_CLIENTE:
+                boolean clienteOK = true;
+                admPed.generarPedido();
+                n++;
+                peticionRecibida.setDatosSalida(clienteOK);
+                break;
+            case AGREGAR_CARRITO:
+                String codigoCantidad = (String) peticionRecibida.getDatosEntrada();
+                String [] partes2 = codigoCantidad.split(".");
+         //       Object porAgregar = admPro.obtenerProducto(partes2[0]);
+                int cantidad = Integer.parseInt(partes2[1]);
+                //codigo = int del numero de pedido que no hemos hecho
+                
+                int codigo = n;
+                boolean productoOK;
+                if (admPro.contains(partes2[0])){
+                    productoOK = admPed.agregarProductoAUnPedido(codigo, admPro.obtenerProducto(partes2[0]), cantidad);
+                    peticionRecibida.setDatosSalida(productoOK);
+                }else{
+                    productoOK = false;
+                    peticionRecibida.setDatosSalida(productoOK);
+                }
                 break;
         }
         return peticionRecibida;

@@ -90,7 +90,7 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
         jLabelPrecio1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelPrecio1.setText("Precio");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENT", "PRN", "PTR", "BEB" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -82,6 +82,35 @@ public class AdmProductos {
         listaProductos.add(new Producto(codigo, nombre, descripcion, tamPorcion, piezas, calPorcion, calPieza, precio, tipo));
     }
     
+    /**
+     * Función que verifica que un producto esté en el catálogo en base a su código
+     * @param codigo
+     * @return 
+     */
+    public boolean contains(String codigo){
+        for (Producto actual : listaProductos){
+            if (actual.getCodigo().equals(codigo)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Función que devuelve un objeto Producto del catálogo.
+     * @param codigo
+     * @return 
+     */
+    public Producto obtenerProducto(String codigo){
+        for (Producto actual : listaProductos){
+            if (actual.getCodigo().equalsIgnoreCase(codigo)){
+                return actual;
+            }
+        }
+        return null;
+    }
+    
+    
     public ArrayList<String[]> datosVerProducto(){
         ArrayList<String[]> datosProducto = new ArrayList();
         for (Producto actual : listaProductos ){

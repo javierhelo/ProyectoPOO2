@@ -5,7 +5,10 @@
  */
 package AppCliente.vista;
 
+import AppCliente.modelo.Cliente;
 import AppServidora.control.Controlador;
+import general.Peticion;
+import general.TAccion;
 
 /**
  *
@@ -145,13 +148,23 @@ public class FrmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_AdmBttActionPerformed
 
     private void ClienteBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteBttActionPerformed
+        // se crea una peticion de tipo INGRESAR que devolverá un boolean como respuesta.
+        // esto por definición de los servicios provistos por la aplicación servidora
         
+        Peticion peticionIngresar = new Peticion();
+        peticionIngresar.setAccion(TAccion.INGRESAR_CLIENTE);
+        Cliente conexion = new Cliente(peticionIngresar);
+        
+        boolean respuesta = (boolean) conexion.getRespuestaServer();
+        if (respuesta){
+            FrmRealizarPedido clientePrincipal = new FrmRealizarPedido();
+            clientePrincipal.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_ClienteBttActionPerformed
 
     private void ClienteBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClienteBttMouseClicked
-        FrmRealizarPedido realizarPedido = new FrmRealizarPedido();
-        realizarPedido.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_ClienteBttMouseClicked
 
     private void AdmBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdmBttMouseClicked
