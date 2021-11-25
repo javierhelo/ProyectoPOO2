@@ -7,6 +7,7 @@ package AppServidora.control;
 
 import general.Pedido;
 import general.Producto;
+import general.TPedido;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,14 +23,23 @@ public class AdmPedidos {
     }
     
     /**
-     * Función que crea un pedido nuevo y lo devuelve generando la fecha automáticamente
-     * utilizando Instant.now()
-     * @return 
+     * Función que crea un pedido nuevo con la fecha automáticamente
+     * utilizando Instant.now() 
+     * @param codigo
      */
-    public void generarPedido(){
-        Pedido nuevo = new Pedido(Date.from(Instant.now()).toString());
+    public void generarPedido(int codigo){
+        Pedido nuevo = new Pedido(Date.from(Instant.now()).toString(), codigo);
         agregarPedido(nuevo);
     }
+    
+//    public void crearPedidos(){
+//        Pedido nuevo1 = new Pedido("12-12-12", 12, "Javier", TPedido.EXPRESS);
+//        Pedido nuevo2 = new Pedido("13-11-12", 13, "Juleisy", TPedido.RECOGER);
+//        
+//        listaPedidos.add(nuevo1);
+//        listaPedidos.add(nuevo2);
+//    }
+    
     
     /**
      * Función booleana que dice si un producto se pudo agregar a un determinado pedido
@@ -38,11 +48,11 @@ public class AdmPedidos {
      * @param cantidad : Cantidad de veces indicada para agregar dicho producto
      * @return 
      */
-    public boolean agregarProductoAUnPedido(int codigo, Producto porAgregar, int cantidad){
+    public boolean agregarProductoAUnPedido(int codigo, Producto porAgregar){
         for (int i = 0; i < listaPedidos.size(); i++){
             Pedido actual = listaPedidos.get(i);
             if (actual.getCodigo() == codigo){
-                actual.agregarProducto(porAgregar, cantidad);
+                actual.agregarProducto(porAgregar);
                 return true;
             }
         }
@@ -61,5 +71,8 @@ public class AdmPedidos {
         this.listaPedidos = listaPedidos;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Pedidos:" + '\n' + listaPedidos + '\n';
+    }
 }

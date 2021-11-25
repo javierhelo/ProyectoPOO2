@@ -27,30 +27,90 @@ public class FrmTipoPedido extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButtonExpress = new javax.swing.JButton();
-        jButtonRecoger = new javax.swing.JButton();
-        jButtonRestaurante = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        expressBtt = new javax.swing.JButton();
+        comerRestauranteBtt = new javax.swing.JButton();
+        recogerBtt = new javax.swing.JButton();
+        regresarBtt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
-        jTextArea1.setRows(1);
-        jTextArea1.setText("Elija el tipo de pedido que desea realizar:");
-        jScrollPane1.setViewportView(jTextArea1);
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
-        jButtonExpress.setText("Express");
-        jButtonExpress.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel1.setText("Elija el tipo de pedido que desea realizar:");
+
+        expressBtt.setText("Express");
+        expressBtt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                expressBttMouseClicked(evt);
+            }
+        });
+        expressBtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExpressActionPerformed(evt);
+                expressBttActionPerformed(evt);
             }
         });
 
-        jButtonRecoger.setText("Recoger");
+        comerRestauranteBtt.setText("Comer en restaurante");
+        comerRestauranteBtt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comerRestauranteBttMouseClicked(evt);
+            }
+        });
 
-        jButtonRestaurante.setText("Comer en restaurante");
+        recogerBtt.setText("Recoger");
+        recogerBtt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recogerBttMouseClicked(evt);
+            }
+        });
+        recogerBtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recogerBttActionPerformed(evt);
+            }
+        });
+
+        regresarBtt.setText("Regresar");
+        regresarBtt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                regresarBttMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(expressBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comerRestauranteBtt)
+                    .addComponent(jLabel1)
+                    .addComponent(recogerBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(84, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(regresarBtt)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(comerRestauranteBtt)
+                .addGap(35, 35, 35)
+                .addComponent(recogerBtt)
+                .addGap(46, 46, 46)
+                .addComponent(expressBtt)
+                .addGap(40, 40, 40)
+                .addComponent(regresarBtt)
+                .addGap(20, 20, 20))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,39 +118,51 @@ public class FrmTipoPedido extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jButtonExpress, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonRecoger, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonRestaurante)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonExpress)
-                    .addComponent(jButtonRecoger))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonRestaurante)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonExpressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExpressActionPerformed
+    private void expressBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expressBttActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExpressActionPerformed
+    }//GEN-LAST:event_expressBttActionPerformed
+
+    private void comerRestauranteBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comerRestauranteBttMouseClicked
+        FrmPedidoRegistrado pedidoRegistrado = new FrmPedidoRegistrado();
+        pedidoRegistrado.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_comerRestauranteBttMouseClicked
+
+    private void recogerBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recogerBttActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recogerBttActionPerformed
+
+    private void recogerBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recogerBttMouseClicked
+        FrmRecoger recoger = new FrmRecoger();
+        recoger.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_recogerBttMouseClicked
+
+    private void expressBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expressBttMouseClicked
+        FrmExpress express = new FrmExpress();
+        express.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_expressBttMouseClicked
+
+    private void regresarBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarBttMouseClicked
+        FrmVerPedido verPedido = new FrmVerPedido();
+        verPedido.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_regresarBttMouseClicked
 
     /**
      * @param args the command line arguments
@@ -128,10 +200,11 @@ public class FrmTipoPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonExpress;
-    private javax.swing.JButton jButtonRecoger;
-    private javax.swing.JButton jButtonRestaurante;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton comerRestauranteBtt;
+    private javax.swing.JButton expressBtt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton recogerBtt;
+    private javax.swing.JButton regresarBtt;
     // End of variables declaration//GEN-END:variables
 }

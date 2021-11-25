@@ -7,12 +7,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AdmProductos {
     
     private ArrayList<Producto> listaProductos = new ArrayList();
+    private ArrayList<String[]> datosProducto = new ArrayList();
     private Producto lista[] = {
             new Producto("PRN-001", "Albóndigas", "Esferas de carne molida en salsa roja.", 400, 14, 788, 57, 10000.00, TPlatillo.PRN), //Calorías confirmadas por google (culinariamente comprobados)
             new Producto("PRN-002", "Arroz frito", "Arroz hecho al sartén con una combinación de hierbas y aceite de trufas .", 
@@ -61,6 +65,68 @@ public class AdmProductos {
     public void agregarProducto(Producto nuevo){
         listaProductos.add(nuevo);
     }
+
+    public ArrayList<String[]> getDatosProducto() {
+        return datosProducto;
+    }
+
+    public void setDatosProducto(ArrayList<String[]> datosProducto) {
+        this.datosProducto = datosProducto;
+    }
+    
+    public Producto getProductosPorPos(int pos){
+        return listaProductos.get(pos);
+    }
+    /**
+     * 
+     * @param tipo
+     * @return retorna un objeto TPlatillo
+     * asociado al valor del String del objeto de entrada
+     */
+    public TPlatillo getTipo(Object tipo){
+        tipo = String.valueOf(tipo);
+        if (tipo.equals("ENT")){
+            return TPlatillo.ENT;
+        }
+        else if (tipo.equals("BEB")){
+            return TPlatillo.BEB;
+        }
+        else if (tipo.equals("PRN")){
+            return TPlatillo.PRN;
+        }
+        else{
+            return TPlatillo.PTR;
+        }
+    }
+    
+    /**
+     * 
+     * @param codigo
+     * @param nombre
+     * @param descripcion
+     * @param tamPorcion
+     * @param piezas
+     * @param calPorcion
+     * @param calPieza
+     * @param precio
+     * @param tipo
+     * @return retorna un valor booleano indicando
+     * si el producto según los datos de entrada logró ser añadido al catálogo
+     */
+    public boolean agregarProductoAdm(String codigo, String nombre, String descripcion, String tamPorcion, String piezas, String calPorcion,
+            String calPieza, String precio, Object tipo){
+        
+        int tamPorcionP = Integer.parseInt(tamPorcion);
+        int piezasP = Integer.parseInt(piezas);
+        double calPorcionP = Double.parseDouble(calPorcion);
+        double calPiezaP = Double.parseDouble(calPieza);
+        double precioP = Double.parseDouble(precio);
+        TPlatillo tipoP = getTipo(tipo);
+        
+        agregarProducto(codigo, nombre, descripcion, tamPorcionP, piezasP, calPorcionP, calPiezaP, precioP, tipoP);
+        
+        return true;
+    }
     
     /**
      * Función que agrega un producto al archivo binario y a la lista de Productos
@@ -80,6 +146,47 @@ public class AdmProductos {
         };
         int escribirMenu = escribirMenu("src\\menu.dat", porAgregar);
         listaProductos.add(new Producto(codigo, nombre, descripcion, tamPorcion, piezas, calPorcion, calPieza, precio, tipo));
+    }
+    
+    /**
+     * @param codigo 
+     * @return retorna un valor booleano indicando
+     * si el producto según el codigo de entrada logró ser eliminado del catálogo 
+     */
+    public boolean eliminarProducto(String codigo){
+        for(Producto actual : listaProductos){
+            if(actual.getCodigo().equals(codigo)){
+                listaProductos.remove(actual);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * @param codigo
+     * @return retorna un ArrayList con arreglos de los datos de 
+     * un producto de la lista de productos, estos datos se despliegan en
+     * la tabla de ver producto y en el catálogo para eliminar producto.
+     */
+    public ArrayList<String[]> datosCarrito(String codigo){
+        String[] datos = new String[9];
+        for(Producto actual : listaProductos){
+            if(actual.getCodigo().equals(codigo)){
+                datos[0] = String.valueOf(actual.getCodigo());
+                datos[1] = String.valueOf(actual.getNombre());
+                datos[2] = String.valueOf(actual.getDescripcion());
+                datos[3] = String.valueOf(actual.getTamPorcion());
+                datos[4] = String.valueOf(actual.getPiezas());
+                datos[5] = String.valueOf(actual.getCalPorcion());
+                datos[6] = String.valueOf(actual.getCalPieza());
+                datos[7] = String.valueOf(actual.getPrecio());
+                datos[8] = getPlatilloString(actual.getTipo());
+            }
+            
+        }
+        datosProducto.add(datos);
+        return datosProducto;
     }
     
     /**
@@ -110,7 +217,11 @@ public class AdmProductos {
         return null;
     }
     
-    
+    /**
+     * @return retorna un ArrayList con arreglos de los datos de 
+     * un producto de la lista de productos, estos datos se despliegan en
+     * la tabla de ver producto y en el catálogo para eliminar producto.
+     */
     public ArrayList<String[]> datosVerProducto(){
         ArrayList<String[]> datosProducto = new ArrayList();
         for (Producto actual : listaProductos ){
@@ -129,6 +240,11 @@ public class AdmProductos {
         return datosProducto;
     }
     
+     /**
+     * @return retorna un ArrayList con arreglos de los datos de 
+     * cada producto de la lista de productos, estos datos se despliegan en
+     * la tabla del catálogo de productos.
+     */
     public ArrayList<String[]> datosMenu(){
         ArrayList<String[]> datosProducto = new ArrayList();
         for (Producto actual : listaProductos ){
@@ -140,10 +256,15 @@ public class AdmProductos {
             datosProducto.add(datos);
         }
         return datosProducto;
-        
     }
+   
     
-    
+     /**
+     * 
+     * @param platillo
+     * @return retorna un String que corresponde
+     * al tipo de platillo enviado por parámetro
+     */
     public String getPlatilloString(TPlatillo platillo){
         if (platillo == TPlatillo.BEB){
             return "Bebida";

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Pedido implements Serializable{
     private String fecha;
-    public static int codigo = 0;
+    private int codigo;
     private String persona;
     private TPedido tipo;
     private ArrayList<Producto> carrito = new ArrayList<>();
@@ -22,16 +22,16 @@ public class Pedido implements Serializable{
     public Pedido() {
     }
 
-    public Pedido(String fecha, String persona, TPedido tipo) {
+    public Pedido(String fecha, int codigo, String persona, TPedido tipo) {
         this.fecha = fecha;
-        this.codigo = codigo++;
+        this.codigo = codigo;
         this.persona = persona;
         this.tipo = tipo;
     }
     
-    public Pedido(String fecha){
+    public Pedido(String fecha, int codigo){
         this.fecha = fecha;
-        this.codigo = codigo++;
+        this.codigo = codigo;
     }
     public void agregarProducto(Producto nuevo){
         carrito.add(nuevo);
@@ -73,8 +73,26 @@ public class Pedido implements Serializable{
         } 
     }
     
+     /**
+     * 
+     * @param platillo
+     * @return retorna un String que corresponde
+     * al tipo de platillo enviado por parámetro
+     */
+    public String getPlatilloString(TPlatillo platillo){
+        if (platillo == TPlatillo.BEB){
+            return "Bebida";
+        }
+        if (platillo == TPlatillo.ENT){
+            return "Entrada";
+        }
+        if (platillo == TPlatillo.PRN){
+            return "Plato fuerte";
+        }
+        return "Postre";
+    }
     
-    
+   
     public String getFecha() {
         return fecha;
     }
@@ -87,9 +105,6 @@ public class Pedido implements Serializable{
         return persona;
     }
 
-//    public double calcularPrecio(){
-//        
-//    }
     public TPedido getTipo() {
         return tipo;
     }
@@ -117,7 +132,9 @@ public class Pedido implements Serializable{
     public ArrayList<Producto> getCarrito() {
         return carrito;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Pedido:" + "Código: " + codigo + "Fecha: " + fecha + "- Persona: " + persona + "- Tipo: " + tipo + '\n';
+    }
 }

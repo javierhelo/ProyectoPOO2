@@ -8,6 +8,7 @@ package AppCliente.vista;
 import AppCliente.modelo.Cliente;
 import AppServidora.control.Controlador;
 import general.Peticion;
+import general.Producto;
 import general.TAccion;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
     public FrmRealizarPedido() {
         initComponents();
         cargarDatos();
+        cargarDatosCarrito();
 
     }
     
@@ -90,8 +92,6 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
         tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         codigo = new javax.swing.JTextField();
-        jLabelCantidad = new javax.swing.JLabel();
-        cantidad = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -157,11 +157,7 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel1.setText("Código:");
 
-        jLabelCantidad.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
-        jLabelCantidad.setText("Cantidad:");
-
-        cantidad.setMaximumRowCount(15);
-        cantidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel2.setText("NUESTRO CATÁLOGO DE PRODUCTOS:");
@@ -187,6 +183,8 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
 
         jLabel4.setText(" que desea añadir a su carrito, luego presione el botón de añadir al carrito:");
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         jLabel5.setText("SU CARRITO:");
 
@@ -209,19 +207,24 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
 
         Carrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
             }
         ));
         jScrollPane3.setViewportView(Carrito);
 
         confirmarPedido.setBackground(new java.awt.Color(102, 204, 0));
         confirmarPedido.setText("Confirmar pedido");
+        confirmarPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmarPedidoMouseClicked(evt);
+            }
+        });
         confirmarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarPedidoActionPerformed(evt);
@@ -237,8 +240,12 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
         });
 
         agregarCarrito.setBackground(new java.awt.Color(102, 204, 0));
-        agregarCarrito.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         agregarCarrito.setText("Agregar al carrito");
+        agregarCarrito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarCarritoMouseClicked(evt);
+            }
+        });
         agregarCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarCarritoActionPerformed(evt);
@@ -254,15 +261,6 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -272,78 +270,78 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(eliminarProducto))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(agregarCarrito)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabelCantidad)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(confirmarPedido))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(140, 140, 140)
-                                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(21, 21, 21)))
-                .addGap(42, 42, 42))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(confirmarPedido)))
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 29, Short.MAX_VALUE)
+                        .addComponent(agregarCarrito)
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(465, 465, 465))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(188, 188, 188))
+                .addGap(218, 218, 218))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelCantidad)
-                                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(agregarCarrito)
-                                    .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(confirmarPedido))))
+                            .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregarCarrito)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(eliminarProducto)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                        .addComponent(eliminarProducto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(confirmarPedido)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -360,20 +358,50 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
     private void tablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMousePressed
         int row = tabla.rowAtPoint(evt.getPoint());
         int col = tabla.columnAtPoint(evt.getPoint());
-        if (col == 3){
+        if (col == 4){
+            Producto producto = FrmInicio.getControlador().getAdmPro().getProductosPorPos(row);
+            
             FrmVerProducto verProducto = new FrmVerProducto();
             verProducto.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_tablaMousePressed
 
+    private void ajustarTablaCarrito(){
+        TableColumnModel columnModel = Carrito.getColumnModel();
+        for (int column = 0; column < Carrito.getColumnCount(); column++) {
+            int width = 100; 
+            for (int row = 0; row < Carrito.getRowCount(); row++) {
+                TableCellRenderer renderer = Carrito.getCellRenderer(row, column);
+                Component comp = Carrito.prepareRenderer(renderer, row, column);
+                width = Math.max(comp.getPreferredSize().width + 1, width);
+            }
+            
+            columnModel.getColumn(column).setPreferredWidth(width);
+        }
+    }
+    
+    public void cargarDatosCarrito(String elCodigo){
+        String[] titulos = {"Código", "Nombre", "Descripción", "Tamaño de la porción", "Piezas por porción", "Calorías en 1 porción", "Calorías por pieza", "Precio"};
+        DefaultTableModel modelo = new DefaultTableModel(null,titulos);
+        Controlador controlador = FrmInicio.getControlador();
+        ArrayList<String[]> datos = controlador.getAdmPro().datosCarrito(elCodigo);
+        for (int i = 0; i < datos.size();i++){
+            modelo.addRow(datos.get(i));
+        }
+        Carrito.setModel(modelo);
+        ajustarTablaCarrito();
+        Carrito.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        Carrito.setEnabled(false);
+    }
+    
     private void agregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarCarritoActionPerformed
+
         String elCodigo = codigo.getText();
-        int laCantidad = cantidad.getSelectedIndex();
-        String vecesPorAgregar = Integer.toString(laCantidad);
+        cargarDatosCarrito(elCodigo);
         //se crea la petición de tipo AGREGAR_CARRITO
         
-        Peticion peticionAgregar = new Peticion(TAccion.AGREGAR_CARRITO, elCodigo+"."+vecesPorAgregar);
+        Peticion peticionAgregar = new Peticion(TAccion.AGREGAR_CARRITO, elCodigo);
         
         Cliente conexion = new Cliente(peticionAgregar);
         
@@ -384,6 +412,30 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
             jLabelMensaje.setText("El codigo del producto ingresado no está en el catálogo.");
         }
     }//GEN-LAST:event_agregarCarritoActionPerformed
+    
+    public void cargarDatosCarrito(){
+        String[] titulos = {"Código", "Nombre", "Descripción", "Tamaño de la porción", "Piezas por porción", "Calorías en 1 porción", "Calorías por pieza", "Precio"};
+        DefaultTableModel modelo = new DefaultTableModel(null,titulos);
+        Controlador controlador = FrmInicio.getControlador();
+        ArrayList<String[]> datos = controlador.getAdmPro().getDatosProducto();
+        for (int i = 0; i < datos.size();i++){
+            modelo.addRow(datos.get(i));
+        }
+        Carrito.setModel(modelo);
+        ajustarTablaCarrito();
+        Carrito.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        Carrito.setEnabled(false);
+    }
+   
+    private void agregarCarritoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarCarritoMouseClicked
+        
+    }//GEN-LAST:event_agregarCarritoMouseClicked
+
+    private void confirmarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarPedidoMouseClicked
+        FrmVerPedido verPedido = new FrmVerPedido();
+        verPedido.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_confirmarPedidoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -423,7 +475,6 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Carrito;
     private javax.swing.JButton agregarCarrito;
-    private javax.swing.JComboBox<String> cantidad;
     private javax.swing.JTextField codigo;
     private javax.swing.JButton confirmarPedido;
     private javax.swing.JButton eliminarProducto;
@@ -434,7 +485,6 @@ public class FrmRealizarPedido extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelMensaje;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

@@ -45,42 +45,38 @@ public class Controlador {
     public Object obtenerProducto(String codigo){
         return admPro.obtenerProducto(codigo);
     }
-    
+ 
     public Peticion procesarPeticion(Peticion peticionRecibida) {
         int n = 0;
-        switch (peticionRecibida.getAccion()){
-            case INGRESAR: 
-                 String credenciales = (String) peticionRecibida.getDatosEntrada();
-                 String [] partes  = credenciales.split("-"); 
-                 boolean admOK = admUsr.validarAdm(partes[0], partes[1]);
-                 peticionRecibida.setDatosSalida(admOK);
+        switch (peticionRecibida.getAccion()) {
+            case INGRESAR:
+                String credenciales = (String) peticionRecibida.getDatosEntrada();
+                String[] partes = credenciales.split("-");
+                boolean admOK = admUsr.validarAdm(partes[0], partes[1]);
+                peticionRecibida.setDatosSalida(admOK);
                 break;
             case VER_PRODUCTO:
-//                admPro.crearMenu();
-                peticionRecibida.setDatosSalida(admPro.toString()+ "\n\n");
                 break;
             case INGRESAR_CLIENTE:
                 boolean clienteOK = true;
-                admPed.generarPedido();
+                admPed.generarPedido(n);
                 n++;
                 peticionRecibida.setDatosSalida(clienteOK);
                 break;
             case AGREGAR_CARRITO:
-                String codigoCantidad = (String) peticionRecibida.getDatosEntrada();
-                String [] partes2 = codigoCantidad.split(".");
-         //       Object porAgregar = admPro.obtenerProducto(partes2[0]);
-                int cantidad = Integer.parseInt(partes2[1]);
-                //codigo = int del numero de pedido que no hemos hecho
-                
+                String codigoFrm = (String) peticionRecibida.getDatosEntrada();
                 int codigo = n;
                 boolean productoOK;
-                if (admPro.contains(partes2[0])){
-                    productoOK = admPed.agregarProductoAUnPedido(codigo, admPro.obtenerProducto(partes2[0]), cantidad);
+                if (admPro.contains(codigoFrm)) {
+                    productoOK = admPed.agregarProductoAUnPedido(codigo, admPro.obtenerProducto(codigoFrm));
                     peticionRecibida.setDatosSalida(productoOK);
-                }else{
+                } else {
                     productoOK = false;
                     peticionRecibida.setDatosSalida(productoOK);
                 }
+                break;
+            case VER_PEDIDOS:
+                peticionRecibida.setDatosSalida(admPed.toString()+ "\n\n");
                 break;
         }
         return peticionRecibida;

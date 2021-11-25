@@ -5,6 +5,10 @@
  */
 package AppCliente.vista;
 
+import AppCliente.modelo.Cliente;
+import general.Peticion;
+import general.TAccion;
+
 /**
  *
  * @author Javier
@@ -32,7 +36,6 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
         jButtonEliminarProducto = new javax.swing.JButton();
         jButtonAgregarProducto = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        pedidosLista = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cargarPedidosBtt = new javax.swing.JButton();
         salirBtt = new javax.swing.JButton();
@@ -47,6 +50,8 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
         nuncaPedidosBtt1 = new javax.swing.JButton();
         verTopTenBtt1 = new javax.swing.JButton();
         distribucionPedidosBtt1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pedidosLista = new javax.swing.JTextArea();
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 20)); // NOI18N
         jLabel1.setText("Configuraciones del catálogo");
@@ -69,12 +74,6 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(195, 226, 203));
 
-        pedidosLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pedidosListaActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 22)); // NOI18N
         jLabel2.setText("Pedidos realizados:");
 
@@ -93,6 +92,11 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
                 salirBttMouseClicked(evt);
             }
         });
+        salirBtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirBttActionPerformed(evt);
+            }
+        });
 
         nomUsuario.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
 
@@ -108,12 +112,27 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
                 agregarProductoBttMouseClicked(evt);
             }
         });
+        agregarProductoBtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarProductoBttActionPerformed(evt);
+            }
+        });
 
         modificarProductoBtt.setBackground(new java.awt.Color(108, 145, 108));
         modificarProductoBtt.setText("Modificar producto");
+        modificarProductoBtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarProductoBttActionPerformed(evt);
+            }
+        });
 
         eliminarCatalogoBtt.setBackground(new java.awt.Color(108, 145, 108));
         eliminarCatalogoBtt.setText("Eliminar producto");
+        eliminarCatalogoBtt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminarCatalogoBttMouseClicked(evt);
+            }
+        });
         eliminarCatalogoBtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarCatalogoBttActionPerformed(evt);
@@ -207,6 +226,10 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
+        pedidosLista.setColumns(20);
+        pedidosLista.setRows(5);
+        jScrollPane1.setViewportView(pedidosLista);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -215,8 +238,8 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(pedidosLista, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -241,13 +264,13 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(salirBtt)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pedidosLista, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addComponent(cargarPedidosBtt)
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -281,12 +304,12 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEliminarProductoActionPerformed
 
-    private void pedidosListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosListaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pedidosListaActionPerformed
-
     private void cargarPedidosBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPedidosBttActionPerformed
-        // TODO add your handling code here:
+        Peticion peticion = new Peticion() ;
+        peticion.setAccion(TAccion.VER_PEDIDOS);
+        Cliente miCliente = new Cliente(peticion);
+        String respuestaServer = (String) miCliente.getRespuestaServer();
+        pedidosLista.setText(respuestaServer + '\n');
     }//GEN-LAST:event_cargarPedidosBttActionPerformed
 
     private void distribucionPedidosBtt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distribucionPedidosBtt1ActionPerformed
@@ -304,6 +327,24 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
             agregarProducto.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_agregarProductoBttMouseClicked
+
+    private void salirBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirBttActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salirBttActionPerformed
+
+    private void agregarProductoBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoBttActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregarProductoBttActionPerformed
+
+    private void modificarProductoBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarProductoBttActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificarProductoBttActionPerformed
+
+    private void eliminarCatalogoBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarCatalogoBttMouseClicked
+        FrmEliminarCatalogo eliminarCatalogo = new FrmEliminarCatalogo();
+        eliminarCatalogo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_eliminarCatalogoBttMouseClicked
 
     /**
      * @param args the command line arguments
@@ -355,10 +396,11 @@ public class FrmPantallaPrincipalAdm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton modificarProductoBtt;
     private javax.swing.JTextField nomUsuario;
     private javax.swing.JButton nuncaPedidosBtt1;
-    private javax.swing.JTextField pedidosLista;
+    private javax.swing.JTextArea pedidosLista;
     private javax.swing.JButton salirBtt;
     private javax.swing.JButton verTopTenBtt1;
     // End of variables declaration//GEN-END:variables

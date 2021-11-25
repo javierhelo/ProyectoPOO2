@@ -5,6 +5,14 @@
  */
 package AppCliente.vista;
 
+import AppServidora.control.Controlador;
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author Javier
@@ -16,6 +24,7 @@ public class FrmVerPedido extends javax.swing.JFrame {
      */
     public FrmVerPedido() {
         initComponents();
+        cargarDatos();
     }
 
     /**
@@ -29,8 +38,12 @@ public class FrmVerPedido extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        tablaPedido = new javax.swing.JTable();
+        regresarBtt = new javax.swing.JButton();
+        confirmarPedidoBtt = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -56,11 +69,64 @@ public class FrmVerPedido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("El pedido con los productos que desea comprar es el siguiente:\n");
-        jScrollPane1.setViewportView(jTextArea1);
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel1.setText("El pedido con los productos que desea comprar es el siguiente:");
+
+        tablaPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaPedido);
+
+        regresarBtt.setText("Regresar");
+        regresarBtt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                regresarBttMouseClicked(evt);
+            }
+        });
+
+        confirmarPedidoBtt.setText("Confirmar pedido");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(regresarBtt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(confirmarPedidoBtt))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmarPedidoBtt)
+                    .addComponent(regresarBtt))
+                .addGap(21, 21, 21))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,20 +134,55 @@ public class FrmVerPedido extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void regresarBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarBttMouseClicked
+
+        FrmRealizarPedido realizarPedido = new FrmRealizarPedido();
+        realizarPedido.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_regresarBttMouseClicked
+
+     private void ajustarTabla(){
+        TableColumnModel columnModel = tablaPedido.getColumnModel();
+        for (int column = 0; column < tablaPedido.getColumnCount(); column++) {
+            int width = 100; 
+            for (int row = 0; row < tablaPedido.getRowCount(); row++) {
+                TableCellRenderer renderer = tablaPedido.getCellRenderer(row, column);
+                Component comp = tablaPedido.prepareRenderer(renderer, row, column);
+                width = Math.max(comp.getPreferredSize().width + 1, width);
+            }
+            
+            columnModel.getColumn(column).setPreferredWidth(width);
+        }
+    }
+    
+    public void cargarDatos(){
+        String[] titulos = {"Código", "Nombre", "Descripción", "Tamaño de la porción", "Piezas por porción", "Calorías en 1 porción", "Calorías por pieza", "Precio"};
+        DefaultTableModel modelo = new DefaultTableModel(null,titulos);
+        Controlador controlador = FrmInicio.getControlador();
+        ArrayList<String[]> datos = controlador.getAdmPro().getDatosProducto();
+        for (int i = 0; i < datos.size();i++){
+            modelo.addRow(datos.get(i));
+        }
+        tablaPedido.setModel(modelo);
+        ajustarTabla();
+        tablaPedido.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaPedido.setEnabled(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -118,9 +219,13 @@ public class FrmVerPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton confirmarPedidoBtt;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton regresarBtt;
+    private javax.swing.JTable tablaPedido;
     // End of variables declaration//GEN-END:variables
 }

@@ -164,7 +164,7 @@ public class FrmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_ClienteBttActionPerformed
 
     private void ClienteBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClienteBttMouseClicked
-
+ 
     }//GEN-LAST:event_ClienteBttMouseClicked
 
     private void AdmBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdmBttMouseClicked

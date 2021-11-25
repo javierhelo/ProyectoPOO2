@@ -34,8 +34,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,9 +53,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="95" max="-2" attributes="0"/>
+                  <Component id="mensaje" min="-2" pref="289" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="regresarBtt" min="-2" pref="95" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarProductoBtt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
@@ -73,11 +75,11 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldCodigo3" min="-2" pref="114" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldCodigo4" min="-2" pref="114" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldCodigo1" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldCodigo" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="tipoProducto" min="-2" max="-2" attributes="0"/>
+                                      <Component id="descripcion" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="tamporcion" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="nombre" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="codigo" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -89,10 +91,10 @@
                           </Group>
                           <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextFieldCodigo6" min="-2" pref="114" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCodigo7" min="-2" pref="114" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCodigo5" min="-2" pref="114" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCodigo2" min="-2" pref="114" max="-2" attributes="0"/>
+                              <Component id="precio" min="-2" pref="114" max="-2" attributes="0"/>
+                              <Component id="calPiezas" min="-2" pref="114" max="-2" attributes="0"/>
+                              <Component id="calPorcion" min="-2" pref="114" max="-2" attributes="0"/>
+                              <Component id="piezasPorcion" min="-2" pref="114" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -119,45 +121,46 @@
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="codigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldCodigo2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="piezasPorcion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCodigo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nombre" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCodigo5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="calPorcion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCodigo3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="descripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelCalorias" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCodigo7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="calPiezas" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldCodigo4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldCodigo6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tamporcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="precio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipoProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="regresarBtt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarProductoBtt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="mensaje" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
@@ -226,7 +229,7 @@
             <Property name="text" type="java.lang.String" value="Calor&#xed;as por porci&#xf3;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodigo">
+        <Component class="javax.swing.JTextField" name="codigo">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCalorias">
           <Properties>
@@ -244,35 +247,41 @@
             <Property name="text" type="java.lang.String" value="Tipo de producto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="regresarBtt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6c" green="91" red="6c" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="regresarBttMouseClicked"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="agregarProductoBtt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6c" green="91" red="6c" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar producto"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="agregarProductoBttMouseClicked"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodigo1">
+        <Component class="javax.swing.JTextField" name="nombre">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodigo2">
+        <Component class="javax.swing.JTextField" name="piezasPorcion">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodigo3">
+        <Component class="javax.swing.JTextField" name="descripcion">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodigo4">
+        <Component class="javax.swing.JTextField" name="tamporcion">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodigo5">
+        <Component class="javax.swing.JTextField" name="calPorcion">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodigo6">
+        <Component class="javax.swing.JTextField" name="precio">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCodigo7">
+        <Component class="javax.swing.JTextField" name="calPiezas">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelPrecio1">
           <Properties>
@@ -282,7 +291,7 @@
             <Property name="text" type="java.lang.String" value="Precio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="tipoProducto">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -296,6 +305,8 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="mensaje">
         </Component>
       </SubComponents>
     </Container>
